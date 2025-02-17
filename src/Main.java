@@ -19,18 +19,19 @@ public class Main {
             anasint.texto();
 
             int charCount = 0;
-
             for (Token token : tokens.getTokens()) {
                 String tokenText = token.getText();
                 if (charCount + tokenText.length() > 140) {
                     output.append("<span class='sobrante'>").append(tokenText);
                 } else {
+                    //No tendría que añadir un espacio al finalizar el span, pero lo hace y no entiendo el motivo.
+                    //Por eso cuenta dos espacios extras en el recuento de los 140 caracteres.
                     if (token.getType() == GarciaGuerraLexer.HASHTAG) {
-                        output.append("<span class='hashtag'>").append(tokenText).append("</span> ");
+                        output.append("<span class='hashtag'>").append(tokenText).append("</span>");
                     } else if (token.getType() == GarciaGuerraLexer.USR) {
-                        output.append("<span class='usr'>").append(tokenText).append("</span> ");
+                        output.append("<span class='usr'>").append(tokenText).append("</span>");
                     } else if (token.getType() == GarciaGuerraLexer.LINK) {
-                        output.append("<span class='link'>").append(tokenText).append("</span> ");
+                        output.append("<span class='link'>").append(tokenText).append("</span>");
                     } else {
                         output.append(tokenText).append(" ");
                     }
